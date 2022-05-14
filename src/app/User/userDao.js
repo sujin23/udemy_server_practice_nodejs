@@ -22,7 +22,7 @@ async function selectUserEmail(connection, email) {
 // userId 회원 조회
 async function selectUserIdx(connection, userIdx) {
   const selectUserIdxQuery = `
-                 SELECT email, nickname, name
+                 SELECT website, nickname, name
                  FROM User 
                  WHERE userIdx = ?;
                  `;
@@ -33,7 +33,7 @@ async function selectUserIdx(connection, userIdx) {
 // 유저 생성
 async function insertUserInfo(connection, insertUserInfoParams) {
   const insertUserInfoQuery = `
-        INSERT INTO UserInfo(email, password, nickname)
+        INSERT INTO UserInfo(website, password, nickname)
         VALUES (?, ?, ?);
     `;
   const insertUserInfoRow = await connection.query(
@@ -47,9 +47,9 @@ async function insertUserInfo(connection, insertUserInfoParams) {
 // 패스워드 체크
 async function selectUserPassword(connection, selectUserPasswordParams) {
   const selectUserPasswordQuery = `
-        SELECT email, nickname, password
+        SELECT website, nickname, password
         FROM UserInfo 
-        WHERE email = ? AND password = ?;`;
+        WHERE website = ? AND password = ?;`;
   const selectUserPasswordRow = await connection.query(
       selectUserPasswordQuery,
       selectUserPasswordParams
@@ -63,7 +63,7 @@ async function selectUserAccount(connection, email) {
   const selectUserAccountQuery = `
         SELECT status, id
         FROM UserInfo 
-        WHERE email = ?;`;
+        WHERE website = ?;`;
   const selectUserAccountRow = await connection.query(
       selectUserAccountQuery,
       email

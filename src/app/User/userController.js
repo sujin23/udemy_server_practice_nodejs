@@ -103,17 +103,17 @@ exports.getUser = async function (req, res) {
  * API Name : 특정 유저 조회 API
  * [GET] /app/users/{userId}
  */
-exports.getUserById = async function (req, res) {
+ exports.getUserById = async function (req, res) {
 
     /**
      * Path Variable: userId
      */
-    const userId = req.params.userId;
+    const userIdx = req.params.userIdx;
 
-    if (!userId) return res.send(errResponse(baseResponse.USER_USERID_EMPTY));
+    if (!userIdx) return res.send(errResponse(baseResponse.USER_USERID_EMPTY));
 
-    const userByUserId = await userProvider.retrieveUser(userId);
-    return res.send(response(baseResponse.SUCCESS, userByUserId));
+    const userByUserIdx = await userProvider.retrieveUser(userIdx);
+    return res.send(response(baseResponse.SUCCESS, userByUserIdx));
 };
 
 
